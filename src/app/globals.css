@@ -2,3 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom CSS for Polygon Animation and Glass Effect */
+.polygon-animation {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5));
+    animation: polygon-animate 10s infinite linear;
+    mask-image: radial-gradient(circle, transparent 20%, black 20%);
+    mask-size: 20px 20px;
+    mask-position: center;
+  }
+  
+  @keyframes polygon-animate {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(50px, 50px);
+    }
+  }
+  
