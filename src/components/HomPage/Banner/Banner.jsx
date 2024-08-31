@@ -16,7 +16,7 @@ const BannerSlider = () => {
         <Swiper
             pagination={{ type: 'fraction' }}
             navigation={true}
-            // autoplay={{ delay: 2500, disableOnInteraction: false }}
+            autoplay={{ delay: 2500, disableOnInteraction: false }}
             modules={[Pagination, Navigation, Autoplay]}
             className="mySwiper"
         >

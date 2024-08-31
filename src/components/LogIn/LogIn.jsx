@@ -26,7 +26,7 @@ const LogIn = () => {
                 redirect: false
             });
 
-            console.log(resp);
+            // console.log(resp);
 
             // Handle response and show appropriate messages
             if (resp?.error) {
@@ -39,7 +39,7 @@ const LogIn = () => {
                  console.log(data);
                  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/login/user/api/${formik.values.email}`)
                  .then(res=>{
-                    console.log(res);
+                    // console.log(res);
                     if (res.data) {
                         return router.push(`/`)
                     }
@@ -48,7 +48,7 @@ const LogIn = () => {
                     }
                  })
                 .catch(err=>{
-                    console.log(err);
+                    // console.log(err);
                     
                 })
             }

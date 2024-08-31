@@ -14,7 +14,7 @@ const ManageUsers = () => {
         }
     });
 
-    console.log(users);
+    // console.log(users);
 
     return (
         <>

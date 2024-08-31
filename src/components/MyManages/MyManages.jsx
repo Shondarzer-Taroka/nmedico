@@ -8,9 +8,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import toast, { Toaster } from 'react-hot-toast';
 
+
 const MyManages = () => {
     let { data } = useSession()
     // console.log(data);
+    const image_hosting_key=process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=e9cb597434585eee45ee8bee9b0cca80`;
 
     const [openModal, setOpenModal] = useState(true);
     let [file, setFile] = useState('')
