@@ -71,7 +71,8 @@ export const GET = async (request, { params }) => {
             itemName: "$itemName", 
             category: "$category", 
             originalId: "$selectedId", // Keep the original _id from each document
-            perUnitPrice:"$unitPrice"
+            perUnitPrice:"$unitPrice",
+            sellerEmail:"$email"
           },
           count: { $sum: 1 }, // Count the number of documents in each group
           totalUnitPrice: { $sum: { $toDouble: "$unitPrice" } } // Sum up the unitPrice values
@@ -84,7 +85,8 @@ export const GET = async (request, { params }) => {
           category: "$_id.category",
           perUnitPrice:"$_id.perUnitPrice",
           count: 1,
-          totalUnitPrice: 1
+          totalUnitPrice: 1,
+          sellerEmail:'$_id.sellerEmail'
         }
       }
     ]).toArray();

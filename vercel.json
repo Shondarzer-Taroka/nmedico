@@ -1,8 +1,13 @@
 {
     "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
+      {
+        "source": "/categorydetails/:category",
+        "destination": "/categorydetails/[category]"
+      },
+      {
+        "source": "/cart/:email",
+        "destination": "/cart/[email]"
+      }
     ]
-}
+  }
+  

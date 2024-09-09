@@ -508,7 +508,7 @@ export default function NavBar() {
 
       {/* Conditionally render the CartBox */}
       {toggle && (
-        <div className="fixed top-16 right-0 bg-white shadow-lg p-4 rounded-md w-[300px] z-50">
+        <div className="fixed top-16 right-0 bg-white shadow-lg p-4 rounded-md w-[300px] z-50 h-[500px] overflow-y-auto">
           <CartBox onClose={handleCloseCart} /> {/* Pass the close function as a prop */}
         </div>
       )}

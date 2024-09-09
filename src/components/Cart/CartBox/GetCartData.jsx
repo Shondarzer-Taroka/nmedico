@@ -1,5 +1,5 @@
 import React from 'react';
-import { authPtions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
 import { getServerSession } from 'next-auth';
 import CartBox from './CartBox';
@@ -10,7 +10,7 @@ export let getData = async (email) => {
 }
 
 const GetCartData = async () => {
-    let session = await getServerSession(authPtions)
+    let session = await getServerSession(authOptions)
     let email = session?.user?.email
     let myCart = await getData(email)
     console.log('dd', myCart);

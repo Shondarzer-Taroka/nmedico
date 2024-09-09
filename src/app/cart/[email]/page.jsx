@@ -1,4 +1,4 @@
-import { authPtions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import axios from 'axios';
 import { getServerSession } from 'next-auth';
 import React from 'react';
@@ -9,7 +9,7 @@ export let getData=async(email)=>{
 }
 
 const Page = async() => {
-    let session=await getServerSession(authPtions)
+    let session=await getServerSession(authOptions)
     let email=session?.user?.email
     // let myCart
     return (

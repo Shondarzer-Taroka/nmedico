@@ -1,4 +1,4 @@
-import { authPtions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import CategoryDetails from '@/components/CategoryDetails/CategoryDetails';
 import axios from 'axios';
 import { getServerSession } from 'next-auth';
@@ -20,7 +20,7 @@ const getData = async (category) => {
 const Page = async ({ params }) => {
     const { category } = params; // Destructuring to get category from params
     const data = await getData(category); // Fetching data with category
-    const session=await getServerSession(authPtions)
+    const session=await getServerSession(authOptions)
     // console.log(session);
     
     if (!data) {
@@ -31,7 +31,7 @@ const Page = async ({ params }) => {
     return (
         <div>
             <h1>Category Details</h1>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
             {/* Replace with more specific rendering logic */}
             {data && <CategoryDetails data={data} owner={session?.user?.email} />}
         </div>
