@@ -280,8 +280,9 @@ const Invoice = () => {
                         name:data.customer_details.name,
                         email:data.customer_details.email,
                         totalAmount:data.amount_total,
-                        sessionId:data.id,
-                        PurchasedProducts:data.line_items.data
+                        transactionId:data.payment_intent,
+                        PurchasedProducts:data.line_items.data,
+                        product_owner:data.metadata.product_owner
                     })
                     .then(res=>{
                         console.log(res.data);

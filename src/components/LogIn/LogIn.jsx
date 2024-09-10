@@ -37,20 +37,20 @@ const LogIn = () => {
                 // Redirect or show success message
                 toast.success('Login successful!');
                  console.log(data);
-                 axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/login/user/api/${formik.values.email}`)
-                 .then(res=>{
-                    // console.log(res);
-                    if (res.data) {
-                        return router.push(`/`)
-                    }
-                    if (res.data) {
-                        router.push(`/dashboard/${res?.data?.role}`)
-                    }
-                 })
-                .catch(err=>{
-                    // console.log(err);
+                //  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/login/user/api/${formik.values.email}`)
+                //  .then(res=>{
+                //     // console.log(res);
+                //     if (res.data) {
+                //         return router.push(`/`)
+                //     }
+                //     if (res.data) {
+                //         router.push(`/dashboard/${res?.data?.role}`)
+                //     }
+                //  })
+                // .catch(err=>{
+                //     // console.log(err);
                     
-                })
+                // })
             }
         }
     });

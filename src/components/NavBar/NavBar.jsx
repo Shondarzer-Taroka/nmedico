@@ -32,7 +32,7 @@
 //   //   return <div> <CartBox/> </div>
 //   // }
 
-  
+
 //   // console.log(pathName);
 //   if (pathName.includes('dashboard')) {
 //     return <div>  </div>
@@ -45,7 +45,7 @@
 //  }
 
 
- 
+
 //   return (
 //     <div>
 //       <MiniNavBar />
@@ -101,7 +101,7 @@
 //                   </button>
 
 //                   {/* Profile dropdown */}
-               
+
 //                   {session?.data?.user ? (
 //                     <Menu as="div" className="relative ml-3">
 //                       <div>
@@ -473,7 +473,7 @@ export default function NavBar() {
                       </Menu.Items>
                     </Menu>
                   ) : (
-                    <button
+                    session.status === 'loading' ? <h1 className='text-white'>loading...</h1> : <button
                       onClick={() => signIn()}
                       className="text-sm text-white bg-blue-600 px-4 py-2 rounded-md"
                     >

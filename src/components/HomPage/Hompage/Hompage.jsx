@@ -2,7 +2,11 @@
 import React from 'react';
 import BannerSlider from '../Banner/Banner';
 import CategoryCardSection from '../CategoryCardSection/CategoryCardSection';
-import GetCartData from '@/components/Cart/CartBox/GetCartData';
+
+import Icons from '../Icons/Icons';
+import Review from '../Review/Review';
+import Brand from '../Brand/Brand';
+import BlogCard from '../Blogs/BlogCard/BlogCard';
 
 
 
@@ -12,6 +16,10 @@ const Hompage = () => {
            <BannerSlider/>
            <CategoryCardSection/>
            {/* <GetCartData/> */}
+           <Review/>
+           <Brand/>
+           <BlogCard/>
+           <Icons/>
         </div>
     );
 };

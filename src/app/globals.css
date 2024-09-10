@@ -37,3 +37,30 @@
         width: 100%;
     }
 }
+
+
+/* Glassmorphism effect for the card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur for the glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Subtle shadow */
+    border-radius: 10px;
+    color: #fff; /* Ensure text is white for contrast */
+    transition: transform 0.3s ease; /* Add smooth hover effect */
+}
+
+/* Card hover effect */
+.glass-card:hover {
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+/* CSS */
+.brand-logo {
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for both scale and filter */
+}
+
+.brand-logo:hover {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+  filter: hue-rotate(90deg); /* Change the hue of the image on hover */
+}
