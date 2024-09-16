@@ -28,6 +28,10 @@ const Seller = () => {
                         <Sidebar.Item href="#" icon={HiUser}>
                         Ask For Advertisement:
                         </Sidebar.Item>
+                        <Sidebar.Item  href="#" icon={HiUser}>
+                       
+                        <Link href={'/dashboard/create-blog'}>Create Blog:</Link>
+                        </Sidebar.Item>
                         <Sidebar.Item href="#" icon={HiArrowSmRight}>
                             Sign In
                         </Sidebar.Item>
