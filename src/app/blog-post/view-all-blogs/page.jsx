@@ -52,11 +52,11 @@ const Page = () => {
                                     {/* Grid Overlay (3x3 structure that expands row by row) */}
                                     <div className="absolute w-full inset-0 grid grid-rows-3 grid-cols-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
                                         {/* First Row */}
-                                        <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-500 ease-out"></div>
+                                        <div className="bg-violet-500 w-full opacity-30 transform scale-y-0 group-hover:scale-y-100 transition-all duration-500 ease-out"></div>
                                         {/* Second Row */}
-                                        <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-700 ease-out"></div>
+                                        <div className="bg-violet-500 w-full opacity-30 transform scale-y-0 group-hover:scale-y-100 transition-all duration-700 ease-out"></div>
                                         {/* Third Row */}
-                                        <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-900 ease-out"></div>
+                                        <div className="bg-violet-500 w-full opacity-30 transform scale-y-0 group-hover:scale-y-100 transition-all duration-900 ease-out"></div>
                                     </div>
                                 </div>
 
