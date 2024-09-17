@@ -8,6 +8,7 @@ import Review from '../Review/Review';
 import Brand from '../Brand/Brand';
 import BlogCard from '../Blogs/BlogCard/BlogCard';
 import BlogPost from '@/components/BlogDashboard/BlogPost';
+import { BlogModal } from '@/components/BlogDashboard/BlogModal';
 
 
 
@@ -21,7 +22,7 @@ const Hompage = () => {
            <Brand/>
            <BlogCard/>
            <Icons/>
-          
+   
         </div>
     );
 };
