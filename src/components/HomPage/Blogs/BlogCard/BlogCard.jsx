@@ -184,6 +184,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './BlogCard.css'; // Import external CSS if needed
 import { FaCircle } from "react-icons/fa6";
+import { Button } from '@mui/material';
 
 const BlogCard = () => {
     const [blogs, setBlogs] = useState([]);
@@ -205,7 +206,11 @@ const BlogCard = () => {
     return (
         <article>
             <div className="mt-6">
-                <h3 className="text-xl font-bold mb-2">Blog Posts</h3>
+                <div>
+                    <h3 className="text-xl font-bold mb-2">Blog Posts</h3>
+                    <Button variant="contained">Contained</Button>
+                </div>
+                
 
                 <section className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {/* Blog Cards */}
