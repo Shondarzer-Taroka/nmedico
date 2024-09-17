@@ -25,7 +25,7 @@ const modules = {
 };
 
 const BlogPost = () => {
-    const session=useSession()
+    const session = useSession()
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
@@ -45,33 +45,37 @@ const BlogPost = () => {
     };
 
 
-    useEffect(()=>{
+    useEffect(() => {
         const uploadToImgbb = async () => {
             if (!image) return;
-    
+
             const formData = new FormData();
             formData.append('image', image);
-    
+
             try {
-             if (image) {
-                const response = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY}`, formData);
-                const imageUrl = response.data.data.url;
-                console.log(response);
-                setImageUrl(imageUrl); // Set the URL from img.bb
-             }
+                if (image) {
+                    const response = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY}`, formData);
+                    const imageUrl = response.data.data.url;
+                    console.log(response);
+                    setImageUrl(imageUrl); // Set the URL from img.bb
+                }
             } catch (error) {
                 console.error('Error uploading image to img.bb:', error);
             }
         };
-    uploadToImgbb()
-    },[image])
+        uploadToImgbb()
+    }, [image])
 
     const handleclick = async () => {
+        const currentDate = new Date();
+        const publishedDate = currentDate.toISOString();
         try {
             const post = {
-                name:session?.data?.user?.name,
-                email:session?.data?.user?.email,
+                name: session?.data?.user?.name,
+                email: session?.data?.user?.email,
+                role: session?.data?.user?.role,
                 title,
+                publishedDate,
                 description,
                 content,
                 image: imageUrl // Use the img.bb URL here
@@ -81,7 +85,7 @@ const BlogPost = () => {
             console.log(result.data);
             toast.success('blog successfully published')
             console.log(post);
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -89,7 +93,7 @@ const BlogPost = () => {
 
     return (
         <div className="p-6">
-            <Toaster/>
+            <Toaster />
             <h2 className="text-2xl font-bold mb-4">Create Blog Post</h2>
 
             {/* Title Input */}

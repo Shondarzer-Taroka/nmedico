@@ -204,11 +204,15 @@ const BlogCard = () => {
         getData(); // Fetch data on component mount
     }, []);
 
+    console.log(blogs);
+    
+  
     return (
         <article>
             <div className="mt-6">
                 <div className='flex justify-between w-full my-3'>
                     <h3 className="text-xl font-bold mb-2">Blog Posts</h3>
+                   
                     {blogs.length>5 &&<Button variant="contained"><Link href={'/blog-post/view-all-blogs'}>View All</Link></Button>}
                 </div>
                 
@@ -261,7 +265,7 @@ const BlogCard = () => {
                             </div>
                         ))
                     ) : (
-                        <p>Loading blogs...</p>
+                        <p>No Data Found</p>
                     )}
                 </section>
             </div>

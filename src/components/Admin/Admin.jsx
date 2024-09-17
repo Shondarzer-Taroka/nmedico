@@ -33,12 +33,12 @@ const Admin = ({ children }) => {
             </Link>
             <Link href="/dashboard/admin/manageCategory" passHref>
               <Sidebar.Item as="a" icon={HiViewBoards}>
-              Manage Category
+                Manage Category
               </Sidebar.Item>
             </Link>
             <Link href="/dashboard/admin/paymentManagement" passHref>
               <Sidebar.Item as="a" icon={HiViewBoards}>
-              Payment Management
+                Payment Management
               </Sidebar.Item>
             </Link>
             <Sidebar.Item href="#" icon={HiShoppingBag}>
@@ -47,8 +47,12 @@ const Admin = ({ children }) => {
             <Sidebar.Item href="#" icon={HiShoppingBag}>
               Manage Banner Advertise
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiArrowSmRight}>
-              Sign In
+            <Sidebar.Item href="#" icon={HiUser}>
+              <Link href={'/dashboard/create-blog'}>Create Blog:</Link>
+            </Sidebar.Item>
+
+            <Sidebar.Item href="#" icon={HiUser}>
+              <Link className='w-full' href={'/dashboard/my-blogs'}>My Blogs:</Link>
             </Sidebar.Item>
             <Sidebar.Item href="#" icon={HiTable}>
               Sign Up

@@ -8,12 +8,14 @@ import { FaCircle } from "react-icons/fa6";
 import Link from 'next/link';
 const Page = () => {
     const [blogs, setBlogs] = useState([]);
-
+    const [loading,setLoading]=useState(true)
     // Function to fetch blog data
     const getData = async () => {
         try {
+            setLoading(true)
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/view-all-blogs/api`);
             setBlogs(res.data.result);
+            setLoading(false)
         } catch (error) {
             console.error('Error fetching blog data:', error);
         }
@@ -22,6 +24,10 @@ const Page = () => {
     useEffect(() => {
         getData(); // Fetch data on component mount
     }, []);
+
+    if (loading) {
+        return <h1>loading...</h1>
+    }
 
     return (
         <div>
@@ -77,7 +83,7 @@ const Page = () => {
 
                     ))
                 ) : (
-                    <p>Loading blogs...</p>
+                    <p>No Data Found</p>
                 )}
             </section>
 
