@@ -33,11 +33,13 @@ const Page = ({ params }) => {
         <div>
             {/* Background section with breadcrumbs */}
             <div
-                className="relative min-h-screen bg-cover bg-center flex flex-col justify-center items-center"
+                className="relative min-h-screen bg-cover bg-top flex flex-col justify-center items-center"
                 style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${data.image}')`, // Dark overlay with linear-gradient
                     backgroundSize: 'cover', // Ensures the background image covers the entire section
                     backgroundPosition: 'center', // Centers the background image
+                    height:'100%',
+                    width:'100%'
                 }}
             >
                 {/* Breadcrumbs */}
