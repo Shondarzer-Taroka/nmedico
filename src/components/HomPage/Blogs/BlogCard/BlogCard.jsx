@@ -183,6 +183,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './BlogCard.css'; // Import external CSS if needed
+import { FaCircle } from "react-icons/fa6";
 
 const BlogCard = () => {
     const [blogs, setBlogs] = useState([]);
@@ -244,8 +245,12 @@ const BlogCard = () => {
 
                                 {/* Blog Content */}
                                 <div className="w-full h-[50%]">
+                                     <div className='flex justify-between'>
+                                        <span className='flex gap-2 items-center'> <FaCircle /> APRIL 10, 2024</span>
+                                        <span className='flex gap-2 items-center'> <FaCircle /> ADMIN</span>
+                                     </div>
                                     <h2 className="text-2xl font-bold">{blog.title}</h2>
-                                    
+
                                 </div>
                             </div>
                         ))
