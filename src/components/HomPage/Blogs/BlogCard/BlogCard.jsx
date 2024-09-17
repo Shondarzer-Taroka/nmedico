@@ -1,11 +1,11 @@
 
 
+
 'use client'
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { WiMoonFull } from 'react-icons/wi';
 import axios from 'axios';
-import './BlogCard.css'; // Import external CSS
+import './BlogCard.css'; // Import external CSS if needed
 
 const BlogCard = () => {
     const [blogs, setBlogs] = useState([]);
@@ -29,45 +29,48 @@ const BlogCard = () => {
             <div className="mt-6">
                 <h3 className="text-xl font-bold mb-2">Blog Posts</h3>
 
-                <section className='grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                <section className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {/* Blog Cards */}
                     {blogs.length > 0 ? (
                         blogs.map((blog) => (
-                            <div key={blog._id} className="border h-[500px] p-4 rounded mb-4 flex flex-col gap-6 justify-between">
-
-
+                            <div key={blog._id} className="relative border h-[500px] p-4 rounded mb-4 flex flex-col gap-6 justify-between">
                                 {/* Blog Image */}
-                                <div className='h-[50%]'>
-                                     {blog.image && (
-                                    <Image
-                                        width={200}
-                                        height={0}
-                                        src={blog.image}
-                                        alt={blog.title}
-                                        className="w-full h-full mt-4 object-cover"
-                                    />
-                                )} 
+                                <div className="relative h-[50%] overflow-hidden group rounded-md">
+                                    {blog.image && (
+                                        <Image
+                                            width={200}
+                                            height={0}
+                                            src={blog.image}
+                                            alt={blog.title}
+                                            className="w-full h-full object-cover transition-transform duration-500 ease-in-out transform group-hover:scale-110" 
+                                        />
+                                    )}
+
+                                    {/* Grid Overlay */}
+                                    <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-500"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-700"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-900"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-1100"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-1300"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-1500"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-1700"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-1900"></div>
+                                        <div className="bg-cyan-500 opacity-80 transform scale-0 group-hover:scale-100 transition-all duration-2100"></div>
+                                    </div>
                                 </div>
-                              
-                               <div className='w-full h-[50%]'>
-                               <h2 className="text-2xl font-bold">{blog.title}</h2>
-                               <p className="text-gray-700 mt-2">{blog.description}</p>
-                               </div>
+
                                 {/* Blog Content */}
-                                {/* {blog.content && (
-                                    <div
-                                        className="mt-4"
-                                        dangerouslySetInnerHTML={{ __html: blog.content }}
-                                    />
-                                )} */}
+                                <div className="w-full h-[50%]">
+                                    <h2 className="text-2xl font-bold">{blog.title}</h2>
+                                    <p className="text-gray-700 mt-2">{blog.description}</p>
+                                </div>
                             </div>
                         ))
                     ) : (
                         <p>Loading blogs...</p>
                     )}
                 </section>
-
-
             </div>
         </article>
     );
