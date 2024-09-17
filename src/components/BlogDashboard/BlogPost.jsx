@@ -5,6 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 import Image from 'next/image';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
 
 // Dynamically import ReactQuill with SSR disabled
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -24,6 +25,7 @@ const modules = {
 };
 
 const BlogPost = () => {
+    const session=useSession()
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [content, setContent] = useState('');
@@ -67,6 +69,8 @@ const BlogPost = () => {
     const handleclick = async () => {
         try {
             const post = {
+                name:session?.data?.user?.name,
+                email:session?.data?.user?.email,
                 title,
                 description,
                 content,

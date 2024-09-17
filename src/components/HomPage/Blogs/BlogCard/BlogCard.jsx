@@ -211,9 +211,9 @@ const BlogCard = () => {
                     {/* Blog Cards */}
                     {blogs.length > 0 ? (
                         blogs.map((blog) => (
-                            <div key={blog._id} className="relative border h-[500px] p-4 rounded mb-4 flex flex-col gap-6 justify-between">
+                            <div key={blog._id} className="relative border h-[400px] p-4 rounded mb-4 flex flex-col gap-6 justify-between">
                                 {/* Blog Image */}
-                                <div className="relative h-[50%] overflow-hidden group rounded-md w-full">
+                                <div className="relative h-[60%] overflow-hidden group rounded-md w-full">
                                     {blog.image && (
                                         <Image
                                             width={200}
@@ -244,7 +244,7 @@ const BlogCard = () => {
                                 </div>
 
                                 {/* Blog Content */}
-                                <div className="w-full h-[50%]">
+                                <div className="w-full">
                                      <div className='flex justify-between'>
                                         <span className='flex gap-2 items-center'> <FaCircle /> APRIL 10, 2024</span>
                                         <span className='flex gap-2 items-center'> <FaCircle /> ADMIN</span>
