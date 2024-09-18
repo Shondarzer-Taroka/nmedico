@@ -12,6 +12,7 @@
         "source": "/blog-post/:id",
         "destination": "/blog-post/[id]"
       }
+  
     ]
   }
   

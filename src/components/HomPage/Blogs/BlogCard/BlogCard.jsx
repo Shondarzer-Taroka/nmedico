@@ -196,7 +196,7 @@ const BlogCard = () => {
             setLoading(true)
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/api`);
             setBlogs(res.data.result);
-            setLoading(true)
+            setLoading(false)
         } catch (error) {
             console.error('Error fetching blog data:', error);
         }
