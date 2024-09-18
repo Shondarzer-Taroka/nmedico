@@ -189,12 +189,14 @@ import Link from 'next/link';
 
 const BlogCard = () => {
     const [blogs, setBlogs] = useState([]);
-
+    const [loading,setLoading]=useState(true)
     // Function to fetch blog data
     const getData = async () => {
         try {
+            setLoading(true)
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/api`);
             setBlogs(res.data.result);
+            setLoading(true)
         } catch (error) {
             console.error('Error fetching blog data:', error);
         }
@@ -206,7 +208,9 @@ const BlogCard = () => {
 
     console.log(blogs);
     
-  
+  if (loading) {
+    return <h1> blogs loading... </h1>
+  }
     return (
         <article>
             <div className="mt-6">
