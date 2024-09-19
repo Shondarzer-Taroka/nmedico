@@ -184,12 +184,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './BlogCard.css'; // Import external CSS if needed
 import { FaCircle } from "react-icons/fa6";
-import { Button } from '@mui/material';
-import Link from 'next/link';
+import BlogTitle from '../../BlogTitle/BlogTitle';
+import CombinedBlogs from '../CombinedBlogs/CombinedBlogs';
 
 const BlogCard = () => {
     const [blogs, setBlogs] = useState([]);
-    const [loading,setLoading]=useState(true)
+    const [loading, setLoading] = useState(true)
     // Function to fetch blog data
     const getData = async () => {
         try {
@@ -207,26 +207,22 @@ const BlogCard = () => {
     }, []);
 
     console.log(blogs);
-    
-  if (loading) {
-    return <h1> blogs loading... </h1>
-  }
+
+    if (loading) {
+        return <h1> blogs loading... </h1>
+    }
     return (
         <article>
             <div className="mt-6">
-                <div className='flex justify-between w-full my-3'>
-                    <h3 className="text-xl font-bold mb-2">Blog Posts</h3>
-                   
-                    {blogs.length>5 &&<Button variant="contained"><Link href={'/blog-post/view-all-blogs'}>View All</Link></Button>}
-                </div>
-                
 
-                <section className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    {/* Blog Cards */}
+                <BlogTitle length={blogs.length} />
+
+                {/* <section className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                 
                     {blogs.length > 0 ? (
                         blogs.map((blog) => (
                             <div key={blog._id} className="relative border h-[400px] p-4 rounded mb-4 flex flex-col gap-6 justify-between">
-                                {/* Blog Image */}
+                          
                                 <div className="relative h-[60%] overflow-hidden group rounded-md w-full">
                                     {blog.image && (
                                         <Image
@@ -238,26 +234,26 @@ const BlogCard = () => {
                                         />
                                     )}
 
-                                    {/* Grid Overlay (3x3 structure that expands column by column) */}
+                          
                                     <div className="absolute w-full inset-0 grid grid-cols-3 grid-rows-3  opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
-                                        {/* First Column */}
+                               
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-500 ease-out"></div>
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-500 ease-out"></div>
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-500 ease-out"></div>
 
-                                        {/* Second Column */}
+                            
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-700 ease-out"></div>
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-700 ease-out"></div>
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-700 ease-out"></div>
 
-                                        {/* Third Column */}
+                               
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-900 ease-out"></div>
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-900 ease-out"></div>
                                         <div className="bg-cyan-100 w-full opacity-80 transform scale-y-0 group-hover:scale-y-100 transition-all duration-900 ease-out"></div>
                                     </div>
                                 </div>
 
-                                {/* Blog Content */}
+                            
                                 <div className="w-full">
                                      <div className='flex justify-between'>
                                         <span className='flex gap-2 items-center'> <FaCircle /> APRIL 10, 2024</span>
@@ -271,7 +267,9 @@ const BlogCard = () => {
                     ) : (
                         <p>No Data Found</p>
                     )}
-                </section>
+                </section> */}
+
+                <CombinedBlogs blogs={blogs} />
             </div>
         </article>
     );

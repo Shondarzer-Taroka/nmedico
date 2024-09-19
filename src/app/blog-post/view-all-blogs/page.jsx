@@ -358,15 +358,83 @@
 // export default Page;
 
 
-import ViewAllBlogs from '@/components/BlogDashboard/ViewAllBlogs';
+
+
+
+
+
+
+
+
+
+//  import CombinedBlogs from '@/components/HomPage/Blogs/CombinedBlogs/CombinedBlogs';
+// import axios from 'axios';
+// import React from 'react';
+ 
+//  const getData = async () => {
+//     try {
+     
+//         const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/view-all-blogs/api`,{cache:'no-store'});
+//       return res.data.result
+//     } catch (error) {
+//         console.error('Error fetching blog data:', error);
+//     }
+// };
+
+//  const Page = async() => {
+
+//     let blogs=await getData()
+//     return (
+//         <div>
+//             <CombinedBlogs blogs={blogs}/>
+//         </div>
+//     );
+//  };
+ 
+//  export default Page;
+
+
+
+
+
+
+
+
+
+
+
+import CombinedBlogs from '@/components/HomPage/Blogs/CombinedBlogs/CombinedBlogs';
+import axios from 'axios';
 import React from 'react';
 
-const page = () => {
-    return (
-        <div>
-            <ViewAllBlogs/>
-        </div>
+// Data fetching function
+const getData = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/view-all-blogs/api`,
+      { cache: 'no-store' } // Disabling cache
     );
+    return res.data.result;
+  } catch (error) {
+    console.error('Error fetching blog data:', error);
+    return []; // Return an empty array if there's an error
+  }
 };
 
-export default page;
+// Component
+const Page = async () => {
+  const blogs = await getData(); // Fetch the blogs data
+
+  // Handle empty or failed fetches gracefully
+  if (!blogs || blogs.length === 0) {
+    return <div>No blogs found.</div>;
+  }
+
+  return (
+    <div>
+      <CombinedBlogs blogs={blogs} />
+    </div>
+  );
+};
+
+export default Page;
