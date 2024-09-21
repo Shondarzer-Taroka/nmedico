@@ -76,7 +76,7 @@
 
 import { connectDB } from "@/lib/connectDB";
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+// import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 

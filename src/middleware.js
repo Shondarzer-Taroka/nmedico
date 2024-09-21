@@ -72,14 +72,57 @@
 
 
 
+// // for dev
+
+
+// import { NextResponse } from 'next/server';
+// import { getToken } from 'next-auth/jwt'; 
+// export const dynamic='force-dynamic'
+// export async function middleware(req) {
+//   const token = await getToken({ req, secret: process.env.SECRET });
+
+//   const url = req.nextUrl.clone();
+
+//   if (!token || token.role !== 'admin') {
+//     const response = NextResponse.redirect(new URL('/login', req.url));
+
+//     const cookieName = process.env.NODE_ENV === 'production' 
+//         ? '__Secure-next-auth.session-token' 
+//         : 'next-auth.session-token';
+
+//     response.cookies.delete(cookieName);
+//     response.cookies.delete('next-auth.csrf-token');
+
+//     return response;
+//   }
+
+//   return NextResponse.next();
+// }
+
+// export const config = {
+//   matcher: ['/dashboard/admin/:path*'],
+// };
+
+
+// // for dev okay
+
+
 
 
 
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt'; 
 
+export const dynamic = 'force-dynamic';
+
 export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.SECRET });
+
+  if (!token) {
+    console.log('Token not found or invalid');
+  } else if (token.role !== 'admin') {
+    console.log('User is not an admin');
+  }
 
   const url = req.nextUrl.clone();
 
@@ -102,10 +145,6 @@ export async function middleware(req) {
 export const config = {
   matcher: ['/dashboard/admin/:path*'],
 };
-
-
-
-
 
 
 

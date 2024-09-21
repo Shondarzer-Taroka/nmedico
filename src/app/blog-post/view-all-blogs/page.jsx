@@ -401,20 +401,27 @@
 
 
 
-
-
 import CombinedBlogs from '@/components/HomPage/Blogs/CombinedBlogs/CombinedBlogs';
-import axios from 'axios';
 import React from 'react';
 
 // Data fetching function
 const getData = async () => {
   try {
-    const res = await axios.get(
+    const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/view-all-blogs/api`,
       { cache: 'no-store' } // Disabling cache
     );
-    return res.data.result;
+
+    // Check if the response is okay
+    if (!res.ok) {
+      throw new Error('Failed to fetch blogs');
+    }
+
+    // Parse the response as JSON
+    const data = await res.json();
+    
+    // Return the data result (adjust depending on the actual structure of the response)
+    return data.result; 
   } catch (error) {
     console.error('Error fetching blog data:', error);
     return []; // Return an empty array if there's an error

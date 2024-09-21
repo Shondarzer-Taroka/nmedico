@@ -352,6 +352,8 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import AdminPage from '@/app/dashboard/admin/page';
 import CartBox from '../Cart/CartBox/CartBox'; // Import CartBox component
+import { FiShoppingCart } from "react-icons/fi";
+
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -410,10 +412,12 @@ export default function NavBar() {
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <Link href={'/'} className="flex flex-shrink-0 items-center">
-                    <img
+                    <Image
                       alt="Your Company"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      src="/logo/nmdn.png"
                       className="h-8 w-auto"
+                      height={50}
+                      width={50}
                     />
                   </Link>
                   <div className="hidden sm:ml-6 sm:block">
@@ -444,7 +448,7 @@ export default function NavBar() {
                     className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span className="sr-only">View cart</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    <FiShoppingCart  className="h-6 w-6" aria-hidden="true" />
                   </button>
 
                   {/* Profile dropdown */}
