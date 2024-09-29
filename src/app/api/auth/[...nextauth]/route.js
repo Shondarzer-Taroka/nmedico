@@ -77,6 +77,8 @@
 import { connectDB } from "@/lib/connectDB";
 import NextAuth from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcrypt';
 
@@ -129,6 +131,14 @@ export const authOptions = {
         return currentUser;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+    }),
+    FacebookProvider({
+      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET
+    })
   ],
 
   callbacks: {
