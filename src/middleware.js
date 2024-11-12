@@ -214,7 +214,7 @@ export async function middleware(req) {
         console.log(`Redirecting to login: ${pathname}`);
         return NextResponse.redirect(`${origin}/login?redirect=${encodeURIComponent(pathname)}`);
     }
-
+   
     // Handle admin route protection
     if (pathname.startsWith('/dashboard/admin') && token?.role !== 'admin') {
         console.log('Unauthorized access to admin route');
