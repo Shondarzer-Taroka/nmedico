@@ -62,24 +62,58 @@ const CartBox = ({ cartData, onClose }) => {
         // console.log(result);
     };
 
+    // const handleCheckout = async () => {
+    //     try {
+    //         const stripe = await stripePromise;
+    
+    //         // Calculate the grand total price
+    //         const grandTotal = carts.reduce((total, item) => {
+    //             return total + (parseFloat(item.totalUnitPrice) / parseFloat(item.count)) * item.count;
+    //         }, 0);
+    
+    //         // Send a request to your backend to create a Stripe Checkout session
+    //         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api`, {
+    //             items: carts.map(item => ({
+    //                 name: item.itemName,
+    //                 amount: Math.round(parseFloat(item.totalUnitPrice) / parseFloat(item.count) * 100), // Amount in cents
+    //                 quantity: item.count,
+    //                 sellerEmail:item.sellerEmail
+    //             })),
+               
+    //             success_url: `${window.location.origin}/invoice?session_id={CHECKOUT_SESSION_ID}`,
+    //             cancel_url: `${window.location.origin}/cart`,
+    //         });
+    
+    //         const { id } = data;
+    //         const { error } = await stripe.redirectToCheckout({ sessionId: id });
+    //         if (error) {
+    //             console.error('Stripe error:', error);
+    //         }
+    //     } catch (error) {
+    //         console.error('Checkout error:', error);
+    //     }
+    // };
+    
+
     const handleCheckout = async () => {
         try {
             const stripe = await stripePromise;
     
-            // Calculate the grand total price
-            const grandTotal = carts.reduce((total, item) => {
-                return total + (parseFloat(item.totalUnitPrice) / parseFloat(item.count)) * item.count;
-            }, 0);
+            // Ensure all items have valid names
+            const items = carts.map(item => ({
+                name: item.itemName || 'Unnamed Item', // Fallback name
+                amount: Math.round(parseFloat(item.totalUnitPrice) / parseFloat(item.count) * 100),
+                quantity: item.count,
+                sellerEmail: item.sellerEmail
+            })).filter(item => item.name); // Filter out items with empty names
     
-            // Send a request to your backend to create a Stripe Checkout session
+            // Ensure at least one valid item
+            if (!items.length) {
+                return toast.error('Cart items are invalid or empty');
+            }
+    
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api`, {
-                items: carts.map(item => ({
-                    name: item.itemName,
-                    amount: Math.round(parseFloat(item.totalUnitPrice) / parseFloat(item.count) * 100), // Amount in cents
-                    quantity: item.count,
-                    sellerEmail:item.sellerEmail
-                })),
-               
+                items,
                 success_url: `${window.location.origin}/invoice?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${window.location.origin}/cart`,
             });
@@ -91,10 +125,10 @@ const CartBox = ({ cartData, onClose }) => {
             }
         } catch (error) {
             console.error('Checkout error:', error);
+            toast.error('Checkout failed, please try again.');
         }
     };
     
-
     console.log(carts);
     
 

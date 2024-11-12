@@ -30,7 +30,7 @@ const Review = () => {
 
     return (
         <section
-            className="min-h-screen flex items-center justify-between bg-cover bg-center "
+            className="min-h-screen flex items-center justify-between bg-cover bg-center hidden md:block "
             style={{
                 backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/pexels-artempodrez-6823613.jpg")', // Dark overlay added with linear-gradient
                 backgroundSize: 'cover',  // Ensures the background image covers the entire section
@@ -51,7 +51,7 @@ const Review = () => {
                             <SwiperSlide key={index + 786587657} className="">
                                 <aside
                                     key={index}
-                                    className="glass-card border shadow-lg rounded-lg w-[350px] p-6 transition duration-300 transform hover:scale-105 hover:shadow-2xl"
+                                    className="glass-card border shadow-lg rounded-lg w-full md:w-[350px] p-6 transition duration-300 transform hover:scale-105 hover:shadow-2xl"
                                     style={{
                                         background: 'rgba(255, 255, 255, .9)', // Semi-transparent background
                                         backdropFilter: 'blur(10px)', // Glassmorphism blur effect

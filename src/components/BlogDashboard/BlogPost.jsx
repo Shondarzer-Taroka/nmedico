@@ -82,9 +82,9 @@ const BlogPost = () => {
             };
 
             let result = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/blog-post/api`, post);
-            console.log(result.data);
+            // console.log(result.data);
             toast.success('blog successfully published')
-            console.log(post);
+            // console.log(post);
 
         } catch (error) {
             console.log(error);

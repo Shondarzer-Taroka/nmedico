@@ -358,7 +358,7 @@ import { FiShoppingCart } from "react-icons/fi";
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Blogs', href: '/blog-post/view-all-blogs', current: false },
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Pages', href: '/pages', current: false },
   { name: 'Calendar', href: '#', current: false },
 ];
 
