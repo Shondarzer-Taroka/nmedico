@@ -100,18 +100,17 @@ import toast, { Toaster } from 'react-hot-toast';
 const LogIn = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const redirect = searchParams.get('redirect') || '/';
     const { data: session } = useSession();
-    console.log(redirect);
 
+    // Get the redirect parameter from the URL or default to home page
+    const redirect = searchParams?.get('redirect') || '/';
 
-    // Redirect to the intended page if already logged in
-
+    // Check if the user is already logged in and redirect if necessary
     useEffect(() => {
         if (session?.user?.email) {
-            router.push(redirect);
+            router.replace(redirect);
         }
-    }, [session?.user?.email, router, redirect]);
+    }, [session, router, redirect]);
 
     const formik = useFormik({
         initialValues: {
@@ -130,7 +129,7 @@ const LogIn = () => {
                 toast.error('Login failed: ' + resp.error);
             } else {
                 toast.success('Login successful!');
-                router.push(resp?.url || redirect);
+                router.replace(resp.url || redirect);
             }
         }
     });
@@ -179,4 +178,3 @@ const LogIn = () => {
 };
 
 export default LogIn;
-
