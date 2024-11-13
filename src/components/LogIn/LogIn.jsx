@@ -55,26 +55,28 @@ const LogIn = () => {
 
 
     const handleSignInBySocial = async (provider) => {
-        await signIn(provider)
-        try {
-            let res = await fetch('http://localhost:3000/signup/api', {
-                method: 'POST',
-                body: JSON.stringify(values),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+       let resp= await signIn(provider)
+       console.log(resp);
+       
+        // try {
+        //     let res = await fetch('http://localhost:3000/signup/api', {
+        //         method: 'POST',
+        //         body: JSON.stringify(values),
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //     });
 
-            // Handle response here
-            if (res.ok) {
-                const data = await res.json();
-                toast.success('Registration successful') 
-            } else {
-                console.error('Registration failed:', res.statusText);
-            }
-        } catch (error) {
-            console.error('An error occurred:', error);
-        }
+        //     // Handle response here
+        //     if (res.ok) {
+        //         const data = await res.json();
+        //         toast.success('LogIn successful') 
+        //     } else {
+        //         console.error('LogIn failed:', res.statusText);
+        //     }
+        // } catch (error) {
+        //     console.error('An error occurred:', error);
+        // }
     }
     return (
         <div>

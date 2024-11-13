@@ -31,7 +31,7 @@ const BannerSlider = () => {
                     {/* Left Content */}
                     <div className="relative z-10 p-8 max-w-md">
                         <h1 className="text-4xl font-bold text-white mb-4">Amazing Deals on Products</h1>
-                        <p className="text-white mb-4">Discover the latest offers and exclusive deals on our products. Don`&apos;`t miss out on these great savings!</p>
+                        <p className="text-white mb-4">Discover the latest offers and exclusive deals on our products. Don&apos;t miss out on these great savings!</p>
                         <button className="btn animate-bounce bg-blue-500 text-white px-6 py-2 rounded-full">
                             Shop Now
                         </button>
@@ -60,7 +60,7 @@ const BannerSlider = () => {
                     {/* Left Content */}
                     <div className="relative z-10 p-8 max-w-md">
                         <h1 className="text-4xl font-bold text-white mb-4">Amazing Deals on Products</h1>
-                        <p className="text-white mb-4">Discover the latest offers and exclusive deals on our products. Don`&apos;`t miss out on these great savings!</p>
+                        <p className="text-white mb-4">Discover the latest offers and exclusive deals on our products. Don&apos;t miss out on these great savings!</p>
                         <button className="btn animate-bounce bg-blue-500 text-white px-6 py-2 rounded-full">
                             Shop Now
                         </button>
@@ -87,7 +87,7 @@ const BannerSlider = () => {
                     {/* Left Content */}
                     <div className="relative z-10 p-8 max-w-md">
                         <h1 className="text-4xl font-bold text-white mb-4">Amazing Deals on Products</h1>
-                        <p className="text-white mb-4">Discover the latest offers and exclusive deals on our products. Don`&apos;`t miss out on these great savings!</p>
+                        <p className="text-white mb-4">Discover the latest offers and exclusive deals on our products. Don&apos;t miss out on these great savings!</p>
                         <button className="btn animate-bounce bg-blue-500 text-white px-6 py-2 rounded-full">
                             Shop Now
                         </button>

@@ -10,6 +10,7 @@ import 'swiper/css/effect-cards';
 import 'swiper/css/autoplay'; // Import autoplay styles if necessary
 import { EffectCards, Autoplay } from 'swiper/modules'; // Import Autoplay module
 
+
 const Review = () => {
     const [reviews, setReviews] = useState([]);
 
