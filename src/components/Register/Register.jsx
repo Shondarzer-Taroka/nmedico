@@ -21,7 +21,7 @@ const Register = () => {
             values = Object.assign(values, { role: 'user' });
             
             try {
-                let res = await fetch('https://nmedico.vercel.app/signup/api', {
+                let res = await fetch('http://localhost:3000/signup/api', {
                     method: 'POST',
                     body: JSON.stringify(values),
                     headers: {

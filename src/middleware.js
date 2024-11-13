@@ -204,7 +204,8 @@ export async function middleware(req) {
     const protectedRoutes = [
         '/dashboard/admin',
         '/blog-post/view-all-blogs',
-        '/blog-post/view-details'
+        '/blog-post/view-details',
+        '/categorydetails'
     ];
 
     const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
@@ -231,7 +232,7 @@ export async function middleware(req) {
 }
 
 export const config = {
-    matcher: ['/dashboard/admin/:path*', '/blog-post/view-all-blogs', '/blog-post/view-details/:path*']
+    matcher: ['/dashboard/admin/:path*', '/blog-post/view-all-blogs', '/blog-post/view-details/:path*','/categorydetails/:path*']
 };
 
 
