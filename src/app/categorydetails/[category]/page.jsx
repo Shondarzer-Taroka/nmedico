@@ -30,9 +30,6 @@ const Page = async ({ params }) => {
     // Example of rendering the fetched data
     return (
         <div>
-            <h1>Category Details</h1>
-            {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-            {/* Replace with more specific rendering logic */}
             {data && <CategoryDetails data={data} owner={session?.user?.email} />}
         </div>
     );
