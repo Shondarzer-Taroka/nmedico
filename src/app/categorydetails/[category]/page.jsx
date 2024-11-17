@@ -22,7 +22,6 @@ const Page = async ({ params }) => {
     const data = await getData(category); // Fetching data with category
     const session=await getServerSession(authOptions)
     // console.log(session);
-    
     if (!data) {
         return <div>Error fetching data</div>;
     }

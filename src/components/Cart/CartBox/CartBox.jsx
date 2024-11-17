@@ -1,7 +1,3 @@
-
-
-
-
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -9,10 +5,13 @@ import { useSession } from 'next-auth/react';
 import React, { useRef } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import toast, { Toaster } from 'react-hot-toast';
+import { calculateProductDetails } from '@/components/hepler/selectProduct';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
 const CartBox = ({ cartData, onClose }) => {
+
+    
     const session = useSession();
     const increase = useRef();
 
@@ -24,81 +23,57 @@ const CartBox = ({ cartData, onClose }) => {
         }
     });
 
-    const increaseQuantity =async(e, product) => {
-        let id=product._id
-        let selectedId={selectedId:id}
+    const increaseQuantity = async (e, product) => {
+        console.log(product);
+
+        let id = product._id
+        let selectedId = { selectedId: id }
         console.log(selectedId);
         console.log(e.target.previousElementSibling.innerText);
-        e.target.previousElementSibling.innerText=Number(e.target.previousElementSibling.innerText)+1
+        e.target.previousElementSibling.innerText = Number(e.target.previousElementSibling.innerText) + 1
         console.log(e.target.parentElement.parentElement.childNodes[2].lastElementChild);
-        e.target.parentElement.parentElement.childNodes[2].lastElementChild.innerText=Number(product.perUnitPrice)*Number(e.target.previousElementSibling.innerText)
+
+        let discountAmount = (Number(product.discountPercentage) / 100) * Number(product.perUnitPrice);
+        let finalPrice = product.perUnitPrice - discountAmount;
+        console.log(finalPrice);
         
-        let result =await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/increase/api`,selectedId)
+        e.target.parentElement.parentElement.childNodes[2].lastElementChild.innerText = Number(product.perUnitPrice) * Number(e.target.previousElementSibling.innerText)
+
+        let result = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/increase/api`, selectedId)
         console.log(result);
-        
+
     };
     // let a=document.querySelector('.kj').nextElementSibling
-    const decreaseQuantity =async (e,product) => {
-        let id=product._id
-        let selectedId={selectedId:id}
+    const decreaseQuantity = async (e, product) => {
+        let id = product._id
+        let selectedId = { selectedId: id }
         console.log(selectedId);
         // console.log(e.target.previousElementSibling.innerText);
-        e.target.nextElementSibling.innerText=Number(e.target.nextElementSibling.innerText)-1
+        e.target.nextElementSibling.innerText = Number(e.target.nextElementSibling.innerText) - 1
         // console.log(e.target.parentElement.parentElement.childNodes[2].lastElementChild);
-        e.target.parentElement.parentElement.childNodes[2].lastElementChild.innerText=Number(product.perUnitPrice)*Number(e.target.nextElementSibling.innerText)
+        e.target.parentElement.parentElement.childNodes[2].lastElementChild.innerText = Number(product.perUnitPrice) * Number(e.target.nextElementSibling.innerText) - Number(product.discountPercentage)
         // console.log(e.target.nextElementSibling);
-        
-        let result =await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/delete/api/${product._id}`)
+
+        let result = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/delete/api/${product._id}`)
         console.log(result);
     };
 
-    const removeItem = async(product) => {
-        let result =await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/remove/api/${product._id}`)
+    const removeItem = async (product) => {
+        let result = await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/remove/api/${product._id}`)
         console.log(result);
     };
 
-    const clearCart =async (product) => {
+    const clearCart = async (product) => {
         // let result =await axios.delete(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/remove/api/${product._id}`)
         // console.log(result);
     };
 
-    // const handleCheckout = async () => {
-    //     try {
-    //         const stripe = await stripePromise;
-    
-    //         // Calculate the grand total price
-    //         const grandTotal = carts.reduce((total, item) => {
-    //             return total + (parseFloat(item.totalUnitPrice) / parseFloat(item.count)) * item.count;
-    //         }, 0);
-    
-    //         // Send a request to your backend to create a Stripe Checkout session
-    //         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api`, {
-    //             items: carts.map(item => ({
-    //                 name: item.itemName,
-    //                 amount: Math.round(parseFloat(item.totalUnitPrice) / parseFloat(item.count) * 100), // Amount in cents
-    //                 quantity: item.count,
-    //                 sellerEmail:item.sellerEmail
-    //             })),
-               
-    //             success_url: `${window.location.origin}/invoice?session_id={CHECKOUT_SESSION_ID}`,
-    //             cancel_url: `${window.location.origin}/cart`,
-    //         });
-    
-    //         const { id } = data;
-    //         const { error } = await stripe.redirectToCheckout({ sessionId: id });
-    //         if (error) {
-    //             console.error('Stripe error:', error);
-    //         }
-    //     } catch (error) {
-    //         console.error('Checkout error:', error);
-    //     }
-    // };
-    
+
 
     const handleCheckout = async () => {
         try {
             const stripe = await stripePromise;
-    
+
             // Ensure all items have valid names
             const items = carts.map(item => ({
                 name: item.itemName || 'Unnamed Item', // Fallback name
@@ -106,18 +81,18 @@ const CartBox = ({ cartData, onClose }) => {
                 quantity: item.count,
                 sellerEmail: item.sellerEmail
             })).filter(item => item.name); // Filter out items with empty names
-    
+
             // Ensure at least one valid item
             if (!items.length) {
                 return toast.error('Cart items are invalid or empty');
             }
-    
+
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api`, {
                 items,
                 success_url: `${window.location.origin}/invoice?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${window.location.origin}/cart`,
             });
-    
+
             const { id } = data;
             const { error } = await stripe.redirectToCheckout({ sessionId: id });
             if (error) {
@@ -128,13 +103,47 @@ const CartBox = ({ cartData, onClose }) => {
             toast.error('Checkout failed, please try again.');
         }
     };
+
+    // const handleCheckout = async () => {
+    //     try {
+    //         const stripe = await stripePromise;
+
+    //         // Ensure all items have valid names
+    //         const items = carts.map(item => ({
+    //             name: item.itemName || 'Unnamed Item', // Fallback name
+    //             amount: Math.round(parseFloat(item.totalUnitPrice) / parseFloat(item.count) * 100),
+    //             quantity: item.count,
+    //             sellerEmail: item.sellerEmail
+    //         })).filter(item => item.name); // Filter out items with empty names
+
+    //         // Ensure at least one valid item
+    //         if (!items.length) {
+    //             return toast.error('Cart items are invalid or empty');
+    //         }
+
+    //         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api`, {
+    //             items,
+    //             success_url: `${window.location.origin}/invoice?session_id={CHECKOUT_SESSION_ID}`,
+    //             cancel_url: `${window.location.origin}/cart`,
+    //         });
+
+    //         const { id } = data;
+    //         const { error } = await stripe.redirectToCheckout({ sessionId: id });
+    //         if (error) {
+    //             console.error('Stripe error:', error);
+    //         }
+    //     } catch (error) {
+    //         console.error('Checkout error:', error);
+    //         toast.error('Checkout failed, please try again.');
+    //     }
+    // };
+
     
-    console.log(carts);
-    
+
 
     return (
         <div className="w-full mx-auto p-4 bg-white shadow-md rounded-lg relative">
-            <Toaster/>
+            <Toaster />
             <button
                 onClick={onClose}
                 className="absolute top-0 right-0 mt-4 text-sm text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600"
@@ -157,11 +166,11 @@ const CartBox = ({ cartData, onClose }) => {
                                     <div className="flex items-center space-x-2 mt-2">
                                         <button
                                             className="px-2 py-1 bg-gray-200 rounded"
-                                            onClick={() => decreaseQuantity(event,item)}
+                                            onClick={() => decreaseQuantity(event, item)}
                                         >
                                             -
                                         </button>
-                                        <span id="inc" ref={increase}>{item ?item.count:0}</span>
+                                        <span id="inc" ref={increase}>{item ? item.count : 0}</span>
                                         <button
                                             className="px-2 py-1 bg-gray-200 rounded"
                                             onClick={() => increaseQuantity(event, item)}

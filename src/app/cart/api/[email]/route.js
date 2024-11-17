@@ -72,6 +72,7 @@ export const GET = async (request, { params }) => {
             category: "$category", 
             originalId: "$selectedId", // Keep the original _id from each document
             perUnitPrice:"$unitPrice",
+            discountPercentage:"$discountPercentage",
             sellerEmail:"$email"
           },
           count: { $sum: 1 }, // Count the number of documents in each group
@@ -86,7 +87,8 @@ export const GET = async (request, { params }) => {
           perUnitPrice:"$_id.perUnitPrice",
           count: 1,
           totalUnitPrice: 1,
-          sellerEmail:'$_id.sellerEmail'
+          sellerEmail:'$_id.sellerEmail',
+          discountPercentage:"$_id.discountPercentage"
         }
       }
     ]).toArray();
