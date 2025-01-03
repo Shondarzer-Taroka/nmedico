@@ -24,11 +24,8 @@ const Hompage = () => {
             <BlogCard />
             <Icons />
 
-            <div className='h-full w-full sticky bottom-9 z-50'>
-                <button>
+            <div className=' w-full h-full relative'>
                     <ChatIcon />
-                </button>
-                
             </div>
         </div>
     );

@@ -20,6 +20,8 @@ const CategoryDetails = ({ data , owner}) => {
         setSelectedMedicine(null);
     };
 
+    console.log(data);
+    
     return (
         <div>
             <div className="overflow-x-auto">
